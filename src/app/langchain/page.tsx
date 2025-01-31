@@ -27,7 +27,7 @@ export default function Home() {
 
       body: JSON.stringify({ messages }),
     });
-
+    console.log(response)
     const data = await response.json();
     const { output } = data;
     console.log("OpenAI replied...", output.content);

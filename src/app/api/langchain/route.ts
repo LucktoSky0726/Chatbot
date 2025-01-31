@@ -76,6 +76,7 @@ export async function POST(req: Request) {
     // Compile application and test  
     const context = await retrieve(message);
     const answer = await generate(message, context);  
+    console.log(answer)
     const theResponse = {
       role:'assistant',
       content:answer,
