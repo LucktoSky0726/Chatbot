@@ -8,6 +8,7 @@ export default function Home() {
             <h2 className="text-xl ">Welcome to My Page</h2>
             <p className="mt-2 text-gray-700">This is a simple responsive webpage using Tailwind CSS. Resize the window to see the responsiveness in action!</p>
             <Link href={`/chatbot`}>chatbot with openai</Link><br/>
+            <Link href={`/langchain`}>chatbot with langchain</Link><br/>
             <Link href={`/audio`}>audio</Link><br/>
             <Link href={`/story`}>story</Link>
         </section>

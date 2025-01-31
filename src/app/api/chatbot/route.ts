@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     });
     console.log(completion.choices[0].message);
     const theResponse = completion.choices[0].message;
-  
+    console.log(theResponse)
     return NextResponse.json({ output: theResponse }, { status: 200 })
   
   };
