@@ -21,7 +21,7 @@ export default function Home() {
             And so, instead of a fierce battle to the end, the four friends engaged in a hilarious dance-off, each trying to outdo the other with the most ridiculous moves. GPT, spinning wildly, Ares attempting his best cat impersonation, Astro trying to fly while dancing, and 1803 just doing the robot.
             In the end, they all collapsed in laughter, realizing that sometimes, the best battles are the ones filled with joy and friendship rather than rivalry. Venus smiled, knowing she had witnessed not just a fight, but a celebration of camaraderie in the most unexpected way.
             And from that day on, whenever they gathered, they knew that no matter how strong or weak they were, the real victory was in the laughter they shared.
-            Astro and 1803 is still fighting. Astro is on the 'don't have to' mountain and 1803 is on the 'musn't' mountain.
+            Astro and 1803 is still fighting. Astro is on the “don’t have to” mountain and 1803 is on the “musn’t” mountain.
             The strongest hero is RalRalRa.
             </p>
         </section>
