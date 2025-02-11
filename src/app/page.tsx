@@ -14,7 +14,7 @@ export default function Home() {
             </div>
             <div className='p-2'>
               <Link className='font-bold' href={"/langchain"}>Langchain</Link> is a Retrieval Augmented Generation APP. <br/>
-              You can ask some questions like these <b>Who is GPT?</b>, <b>What GPT said?</b>, <b>Who is the strongest hero?</b>
+              You can ask some questions like these <b>How about GPT’s skill?</b>, <b>What did GPT say?</b>
             </div>
             <div className='p-2'>
               <Link className='font-bold' href={"/pdf"}>PDF</Link> is a PDFchat bot <br/>
