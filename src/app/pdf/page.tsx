@@ -94,7 +94,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center px-24 ">
       {/* <h1 className="text-5xl font-sans">ChatterBot</h1> */}
-      <div className="flex  h-[50rem] w-[60rem] flex-col items-center bg-gray-600 rounded-xl mt-24">
+      <div className="flex  h-[50rem] w-[60rem] flex-col items-center bg-gray-600 rounded-xl mt-12">
         <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 w-full">
           <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 px-3 w-full">
             {messages.map((e,k) => {
