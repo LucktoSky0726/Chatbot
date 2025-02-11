@@ -4,9 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 export default function Home() {
-  const [uploadStatus, setUploadStatus] = useState<string | null>(null);
   const [theInput, setTheInput] = useState("");
-  const [completion, setCompletion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -15,13 +13,17 @@ export default function Home() {
     },
   ]);
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    const file = acceptedFiles[0];
+    setIsLoading(true);
 
+    const file = acceptedFiles[0];
+    const temp = messages;
+    let uploadMessage = ""
+    temp.push({ role: "user", content: "I've uploaded a new file" });
+    setMessages(temp)
     if (file.type !== "application/pdf") {
-      setUploadStatus("Please upload a PDF");
+      uploadMessage = "You should upload a PDF"
       return;
     }
-
     const formData = new FormData();
     formData.set("file", file);
 
@@ -34,14 +36,22 @@ export default function Home() {
       const body = await response.json();
 
       if (body.success) {
-        setUploadStatus("Data added successfully");
+        uploadMessage = `The file ${file.name} has been added successfully. Please feel free to ask any questions you have about the content in the PDF file.`
+        
       } else {
-        setUploadStatus("Failed to add data");
+        uploadMessage = "Failed to add data to the model. Please try again."
       }
     } catch (error) {
-      console.error("Error uploading file:", error);
-      setUploadStatus("Error uploading file");
+      uploadMessage = `${error}Error occurs when uploading file. Please try again`
     }
+    const theResponse = {
+      role:'assistant',
+      content:uploadMessage,
+      refusal:null
+    }
+    setMessages((prevMessages) => [...prevMessages, theResponse]);
+    setIsLoading(false);
+
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -82,21 +92,11 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center px-24 py-5">
-      <h1 className="text-5xl font-sans">ChatterBot</h1>
-      <div className="flex  h-[35rem] w-[40rem] flex-col items-center bg-gray-600 rounded-xl mt-24">
-        <div
-          {...getRootProps({
-            className:
-              "dropzone p-4 border-b-4 border-white transition-colors duration-200 ease-in-out cursor-pointer",
-          })}
-        >
-          <input {...getInputProps()} />
-          <p>Upload a PDF to add new data</p>
-        </div>
-        {uploadStatus && <p className="mt-4 text-center">{uploadStatus}</p>}
+    <main className="flex min-h-screen flex-col items-center px-24 ">
+      {/* <h1 className="text-5xl font-sans">ChatterBot</h1> */}
+      <div className="flex  h-[50rem] w-[60rem] flex-col items-center bg-gray-600 rounded-xl mt-24">
         <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 w-full">
-        <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 px-3 w-full">
+          <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 px-3 w-full">
             {messages.map((e,k) => {
               return (
                 <div
@@ -111,14 +111,29 @@ export default function Home() {
                 </div>
               );
             })}
-            {isLoading ? <div className="self-start  bg-gray-200 text-gray-800 w-max max-w-[18rem] rounded-md px-4 py-3 h-min">*thinking*</div> : ""}
+            {isLoading ? 
+            <div className="self-start w-full max-w-sm rounded-md border border-blue-300 p-4">
+              <div className="flex animate-pulse space-x-4">
+                <div className="size-10 rounded-full bg-gray-200"></div>
+                <div className="flex-1 space-y-6 py-1">
+                  <div className="h-2 rounded bg-gray-200"></div>
+                  <div className="space-y-3">
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="col-span-2 h-2 rounded bg-gray-200"></div>
+                      <div className="col-span-1 h-2 rounded bg-gray-200"></div>
+                    </div>
+                    <div className="h-2 rounded bg-gray-200"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           : ""}
           </div>
         </div>
-        <div className="relative bottom-4 w-[80%]">
-          <form onSubmit={handleSubmit}>
+        <div className="relative bottom-4 w-[80%] ">
+          <form onSubmit={handleSubmit} className="grid grid-cols-4">
             <input
-              className="w-[85%] h-10 px-3 py-2
-          resize-none overflow-y-auto text-black bg-gray-300 rounded-l outline-none"
+              className="h-10 px-2 resize-none overflow-y-auto text-black bg-gray-300 rounded-l outline-none col-span-2"
               value={theInput}
               placeholder="Enter your prompt..."
               onChange={handleInputChange}
@@ -126,11 +141,19 @@ export default function Home() {
             <button
               disabled={isLoading}
               type="submit"
-              className="w-[15%] bg-blue-500 px-4 py-2 rounded-r"
+              className="bg-blue-500 px-4 py-2"
             >
               Submit
             </button>
-            
+            <div
+              {...getRootProps({
+                className:
+                  "dropzone p-2 text-center bg-green-700 rounded-r transition-colors duration-200 ease-in-out cursor-pointer",
+              })}
+            >
+              <input {...getInputProps()} />
+              <p>Upload</p>
+            </div>
           </form>
         </div>
         
