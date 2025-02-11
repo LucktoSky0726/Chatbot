@@ -10,16 +10,7 @@ export default function Home() {
       content: "Yo, this is ChatterBot! How can I help you today?",
     },
   ]);
-  const test = async () => {
-    const response = await fetch("/api/chatbot", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    });
-
-    console.log(response.body)
-  }
+ 
   const callGetResponse = async () => {
     setIsLoading(true);
     const temp = messages;
@@ -93,12 +84,7 @@ export default function Home() {
           >
             send
           </button>
-          <button
-            onClick={test}
-            className="w-[15%] bg-blue-500 px-4 py-2 rounded-r"
-          >
-            test
-          </button>
+          
         </div>
       </div>
   
