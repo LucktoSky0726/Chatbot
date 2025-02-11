@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Navbar from '@/component/Navbar';  
 
 export default function Home() {
   const [theFile, setTheFile] = useState<File | null>(null);
@@ -53,9 +54,9 @@ export default function Home() {
   }
   return (
       <main className="flex min-h-screen flex-col items-center justify-around px-24 py-5">
-        <h1 className="text-5xl font-sans">Whisperer</h1>
+        <Navbar/>
 
-        <div className="flex  h-[35rem] w-[40rem] flex-col items-center bg-gray-600 rounded-xl">
+        <div className="flex  h-[50rem] w-[60rem]  flex-col items-center bg-gray-600 rounded-xl">
           <div className=" h-full flex flex-col gap-2 overflow-y-auto py-8 px-3 w-full">
             <input type="file" accept=".wav, .mp3" onChange={handleFileChange} />
 

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Navbar from '@/component/Navbar';  
 
 export default function Home() {
   const [theInput, setTheInput] = useState("");
@@ -45,10 +46,11 @@ export default function Home() {
 
   return(
     <main
-      className="flex min-h-screen flex-col items-center justify-between px-24"
+      className="flex min-h-screen flex-col items-center justify-between px-24 py-5"
     >
+      <Navbar/>
       <div
-        className="flex mt-12  h-[50rem] w-[60rem] flex-col items-center bg-gray-600 rounded-xl"
+        className="flex h-[50rem] w-[60rem] flex-col items-center bg-gray-600 rounded-xl"
       >
         <div
           className=" h-full flex flex-col gap-2 overflow-y-auto py-8 px-3 w-full"

@@ -1,17 +1,29 @@
 "use client";
 import Link from 'next/link'
+import Navbar from '@/component/Navbar';  
 export default function Home() {
   
   return (
-      <main className="flex min-h-screen flex-col items-center justify-around px-24 py-5">
-        <section className="bg-white shadow-md rounded-lg p-6 mt-4">
-            <h2 className="text-xl ">Welcome to My Page</h2>
-            <p className="mt-2 text-gray-700">This is a simple responsive webpage using Tailwind CSS. Resize the window to see the responsiveness in action!</p>
-            <Link href={`/chatbot`}>chatbot with openai</Link><br/>
-            <Link href={`/langchain`}>chatbot with langchain</Link><br/>
-            <Link href={`/pdf`}>chatbot with PDF</Link><br/>
-            <Link href={`/audio`}>audio</Link><br/>
-            <Link href={`/story`}>story</Link>
+      <main className="flex min-h-screen flex-col items-center  px-24 py-5">
+        <Navbar/>
+        <section className="flex h-[50rem] w-[60rem] flex-col bg-gray-600 text-white rounded-xl p-10">
+            <h2 className="text-2xl text-center">Welcome to My Page</h2>
+            <div className="mt-2 p-2">This is a simple webpage using Tailwind CSS and Next.js to <b>earn competition score</b> by passing course that <b>GPT</b> made. </div>
+            <div className='p-2'>
+              <Link className='font-bold' href={"/chatbot"}>OpenAI</Link> is the first task and very simple
+            </div>
+            <div className='p-2'>
+              <Link className='font-bold' href={"/langchain"}>Langchain</Link> is a Retrieval Augmented Generation APP. <br/>
+              You can ask some questions like these <b>"Who is GPT?"</b>, <b>"What GPT said?"</b>, <b>"Who is the strongest hero?"</b>
+            </div>
+            <div className='p-2'>
+              <Link className='font-bold' href={"/pdf"}>PDF</Link> is a PDFchat bot <br/>
+              You can upload a PDF and ask questions
+            </div>
+            <div className='p-2'>
+              <Link className='font-bold' href={"/audio"}>Audio</Link> is a Whisper bot that gets transcriptions from audio files <br/>
+              You can upload a Audio file and get transcriptions
+            </div>
         </section>
       </main>
     );
